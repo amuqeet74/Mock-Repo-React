@@ -1,8 +1,8 @@
 .messageBox {
-  background: #F3F3F3;
+  background: var(--secondary-color);
   border-radius: 20px;
   padding: 5px 20px;
-  color: white;
+  color: var(--text-color);
   display: inline-block;
   max-width: 80%;
 }
@@ -30,7 +30,7 @@
   display: flex;
   align-items: center;
   font-family: Helvetica;
-  color: #828282;
+  color: var(--text-color);
   letter-spacing: 0.3px;
 }
 
