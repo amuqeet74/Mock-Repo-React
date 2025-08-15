@@ -18,7 +18,7 @@ html, body {
   text-align: center;
   height: 100vh;
   align-items: center;
-  background-color: #1A1A1D;
+  background: var(--background-color);
 }
 
 .joinInnerContainer {
@@ -29,25 +29,27 @@ html, body {
   border-radius: 0;
   padding: 15px 20px;
   width: 100%;
+  background: var(--secondary-color);
+  color: var(--text-color);
 }
 
 .heading {
-  color: white;
+  color: var(--text-color);
   font-size: 2.5em;
   padding-bottom: 10px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid var(--text-color);
 }
 
 .button {
-    color: #fff !important;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #2979FF;
-    padding: 20px;
-    border-radius: 5px;
-    display: inline-block;
-    border: none;
-    width: 100%;
+  color: var(--text-color) !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--primary-color);
+  padding: 20px;
+  border-radius: 5px;
+  display: inline-block;
+  border: none;
+  width: 100%;
 }
 
 .mt-20 {
