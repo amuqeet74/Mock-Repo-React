@@ -1,3 +1,9 @@
+/* ===========================
+   TextContainer Styles
+   Updated for better clarity, 
+   modern look, and accessibility
+   =========================== */
+
 .textContainer {
   display: flex;
   flex-direction: column;
@@ -6,58 +12,96 @@
   padding: 1rem;
   font-family: 'Arial', sans-serif;
   color: #333;
+  text-align: center;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
+/* Intro Section */
 .intro h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
-  text-align: center;
+  color: #111;
 }
 
 .intro h2 {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
-  text-align: center;
   color: #555;
 }
 
+/* Users Section */
 .usersSection {
   margin-top: 2rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
 }
 
+/* Active User List Container */
 .activeContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  max-height: 200px; /* scroll if many users */
+  gap: 0.6rem;
+  max-height: 220px;
   overflow-y: auto;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  background-color: #f9f9f9;
+  padding: 0.7rem;
+  border: 1px solid #e2e2e2;
+  border-radius: 0.6rem;
+  background-color: #ffffff;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
 }
 
+/* Scrollbar Styling for WebKit browsers */
+.activeContainer::-webkit-scrollbar {
+  width: 6px;
+}
+.activeContainer::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+/* Individual Active Item */
 .activeItem {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0.5rem;
-  border-radius: 0.3rem;
-  transition: background-color 0.2s ease;
+  gap: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
   cursor: default;
 }
 
 .activeItem:hover {
-  background-color: #e0f7ff;
+  background-color: #e6f7ff;
+  transform: scale(1.02);
 }
 
+/* Online Icon */
 .onlineIcon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
+/* Username Text */
 .username {
   font-weight: 500;
+  color: #222;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .intro h1 {
+    font-size: 1.6rem;
+  }
+
+  .usersSection {
+    max-width: 90%;
+  }
+
+  .activeContainer {
+    max-height: 180px;
+  }
 }
