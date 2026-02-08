@@ -24,4 +24,9 @@ input:focus, textarea:focus, select:focus{
   display: inline-block;
   border: none;
   width: 20%;
+  cursor: pointer;
+}
+
+.sendButton:hover {
+  background: #1e63d8;
 }
