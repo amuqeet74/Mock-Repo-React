@@ -1,29 +1,88 @@
-const users = [];
+const { getSupabaseClient } = require('./supabaseClient');
 
-const addUser = ({ id, name, room }) => {
+const addUser = async ({ id, name, room }) => {
+  const supabase = getSupabaseClient();
+  
   name = name.trim().toLowerCase();
   room = room.trim().toLowerCase();
 
-  const existingUser = users.find((user) => user.room === room && user.name === name);
-
   if(!name || !room) return { error: 'Username and room are required.' };
-  if(existingUser) return { error: 'Username is taken.' };
 
-  const user = { id, name, room };
+  try {
+    const { data: existingUsers, error: checkError } = await supabase
+      .from('users')
+      .select('id')
+      .eq('room', room)
+      .eq('name', name)
+      .limit(1);
 
-  users.push(user);
+    if (checkError) return { error: 'Database query failed.' };
+    if (existingUsers && existingUsers.length > 0) {
+      return { error: 'Username is taken.' };
+    }
 
-  return { user };
+    const { data: insertedUser, error: insertError } = await supabase
+      .from('users')
+      .insert([{ id, name, room }])
+      .select();
+
+    if (insertError) return { error: 'Failed to add user.' };
+
+    return { user: insertedUser[0] };
+  } catch (err) {
+    return { error: 'Database error.' };
+  }
 }
 
-const removeUser = (id) => {
-  const index = users.findIndex((user) => user.id === id);
+const removeUser = async (id) => {
+  const supabase = getSupabaseClient();
 
-  if(index !== -1) return users.splice(index, 1)[0];
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .delete()
+      .eq('id', id)
+      .select();
+
+    if (error) return null;
+    return data && data.length > 0 ? data[0] : null;
+  } catch (err) {
+    return null;
+  }
 }
 
-const getUser = (id) => users.find((user) => user.id === id);
+const getUser = async (id) => {
+  const supabase = getSupabaseClient();
 
-const getUsersInRoom = (room) => users.filter((user) => user.room === room);
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', id)
+      .limit(1);
+
+    if (error) return null;
+    return data && data.length > 0 ? data[0] : null;
+  } catch (err) {
+    return null;
+  }
+}
+
+const getUsersInRoom = async (room) => {
+  const supabase = getSupabaseClient();
+  room = room.trim().toLowerCase();
+
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('room', room);
+
+    if (error) return [];
+    return data || [];
+  } catch (err) {
+    return [];
+  }
+}
 
 module.exports = { addUser, removeUser, getUser, getUsersInRoom };

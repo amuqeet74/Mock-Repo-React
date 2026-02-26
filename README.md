@@ -18,3 +18,78 @@ By the end of this video, you will have a strong understanding of how to send an
 
 Setup:
 - run ```npm i && npm start``` for both client and server side to start the development server
+
+## API testing (SE 2240 Lab 2)
+
+This project uses Jest + Supertest in the server package.
+
+### Supabase setup
+
+1) Create a Supabase project.
+2) Create a table named `healthcheck` with an `id` column.
+3) Create a table named `messages` with columns `id`, `room`, `user`, `text`, `created_at`.
+4) Create a table named `users` with columns `id`, `name`, `room`.
+5) Ensure the service role key is used, or allow reads/writes for the tables.
+6) Add your credentials to `.env` (root of the repo).
+
+### Supabase migrations (instead of DBeaver)
+
+This repo now includes:
+
+- `supabase/migrations/20260225120000_init_chat_schema.sql`
+- `supabase/seed.sql`
+
+Use Supabase CLI migrations:
+
+```bash
+# one-time login and project link
+npx supabase login
+npx supabase link --project-ref <your-project-ref>
+
+# apply local migration files to your hosted Supabase project
+npx supabase db push
+```
+
+To create a new migration file later:
+
+```bash
+npx supabase migration new <migration_name>
+```
+
+Then put SQL in the new file and run `npx supabase db push` again.
+
+### GitHub Actions test automation
+
+The workflow in `.github/workflows/test.yml` runs server tests on:
+
+- push to `main` or `master`
+- pull requests targeting `main` or `master`
+
+Add these GitHub repository secrets so CI can access Supabase:
+
+- `SUPABASE_URL`
+- `SUPABASE_KEY`
+
+### Install test dependencies
+
+```
+cd server
+npm install
+```
+
+### Run tests
+
+```
+npm test
+```
+
+### Endpoints covered
+
+- GET /api/health (happy + sad path)
+- GET /api/rooms/:room/messages (happy + sad path)
+- POST /api/users (happy + sad path)
+- GET /api/users
+
+Note: insert at least one `messages` row with `room = lobby` so the happy-path test passes.
+
+

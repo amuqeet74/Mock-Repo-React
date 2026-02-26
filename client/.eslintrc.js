@@ -1,64 +1,25 @@
 module.exports = {
-  "extends": "airbnb",
-  "parser": "babel-eslint",
-  "env": {
-    "browser": true,
-    "node": true,
-    "mocha": true
-  },
+  "extends": ["react-app", "react-app/jest"],
   "rules": {
-    "import/prefer-default-export": 0,
-    "max-len": [
-      2,
-      250
-    ],
-    "no-multiple-empty-lines": [
-      "error",
-      {
-        "max": 1,
-        "maxEOF": 1
-      }
-    ],
-    "no-underscore-dangle": [
-      "error",
-      {
-        "allow": [
-          "_d",
-          "_dh",
-          "_h",
-          "_id",
-          "_m",
-          "_n",
-          "_t",
-          "_text"
-        ]
-      }
-    ],
-    "object-curly-newline": 0,
-    "react/jsx-filename-extension": 0,
-    "react/jsx-one-expression-per-line": 0,
-    "jsx-a11y/click-events-have-key-events": 0,
-    "jsx-a11y/alt-text": 0,
-    "jsx-a11y/no-autofocus": 0,
-    "jsx-a11y/no-static-element-interactions": 0,
-    "react/no-array-index-key": 0,
-    "jsx-a11y/anchor-is-valid": [
-      "error",
-      {
-        "components": [
-          "Link"
-        ],
-        "specialLink": [
-          "to",
-          "hrefLeft",
-          "hrefRight"
-        ],
-        "aspects": [
-          "noHref",
-          "invalidHref",
-          "preferButton"
-        ]
-      }
-    ]
+    "arrow-body-style": 0,
+    "arrow-parens": 0,
+    "array-bracket-spacing": 0,
+    "eol-last": 0,
+    "import/order": 0,
+    "indent": 0,
+    "keyword-spacing": 0,
+    "no-alert": 0,
+    "no-confusing-arrow": 0,
+    "no-shadow": 0,
+    "no-trailing-spaces": 0,
+    "object-curly-spacing": 0,
+    "quotes": 0,
+    "react/button-has-type": 0,
+    "react/function-component-definition": 0,
+    "react/jsx-indent": 0,
+    "react/jsx-tag-spacing": 0,
+    "react/jsx-curly-brace-presence": 0,
+    "react/prop-types": 0,
+    "semi": 0
   }
 }
