@@ -50,6 +50,7 @@ const Chat = ({ location }) => {
 
     if(message) {
       socket.emit('sendMessage', message, () => setMessage(''));
+      console.log(message);
     }
   }
 
